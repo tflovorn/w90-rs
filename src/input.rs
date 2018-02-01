@@ -1,8 +1,7 @@
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Input {
     pub num_bands: u64,
     pub num_wann: u64,
-    pub num_iter: u64,
     pub write_hr: Option<bool>,
     pub mlwf_iteration_mode: MLWFIterationMode,
 
@@ -18,7 +17,7 @@ pub struct Input {
     pub kpoints: [u64; 3],
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MLWFIterationMode {
     /// Use projected wavefunctions only: do not mix to acheive maximal localization.
     /// `num_iter` is set to 0 in Wannier90 input file.
@@ -28,16 +27,17 @@ pub enum MLWFIterationMode {
     MLWF { num_iter: u64 },
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Disentanglement {
     pub dis_win_min: f64,
     pub dis_win_max: f64,
     pub dis_froz_min: f64,
     pub dis_froz_max: f64,
     pub dis_num_iter: u64,
+    pub dis_mix_ratio: f64,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum Projection {
     Random,
     Site {
@@ -50,7 +50,7 @@ pub enum Projection {
     },
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum ProjectionSite {
     /// Projection centered on all atoms of the given species.
     Species(String),
@@ -60,7 +60,7 @@ pub enum ProjectionSite {
     CenterCrystal([f64; 3]),
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum AngularMomentum {
     S,
     P,
@@ -69,32 +69,32 @@ pub enum AngularMomentum {
     // TODO: hybrid orbitals and individual l=l,mr=mr orbitals.
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Cell {
     pub units: LatticeUnits,
     pub cell: [[f64; 3]; 3],
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum LatticeUnits {
     Bohr,
     Angstrom,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Positions {
     pub coordinate_type: PositionCoordinateType,
     pub coordinates: Vec<AtomCoordinate>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum PositionCoordinateType {
     BohrCartesian,
     AngstromCartesian,
     Crystal,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct AtomCoordinate {
     pub species: String,
     pub r: [f64; 3],

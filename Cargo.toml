@@ -7,6 +7,8 @@ license = "MIT/Apache-2.0"
 [dependencies]
 qe = { path = "../qe-rs" }
 failure = "*"
+serde = "*"
+serde_derive = "*"
 
 [dev-dependencies]
 pre-commit = "*"
