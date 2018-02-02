@@ -7,3 +7,4 @@ extern crate qe;
 
 pub mod input;
 pub mod serialize;
+pub mod qe_workflow;

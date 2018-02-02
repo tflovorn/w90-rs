@@ -73,7 +73,7 @@ fn generate_input() {
         projections,
         unit_cell_cart,
         positions,
-        kpoints: [9, 9, 1],
+        k_points: [9, 9, 1],
     };
 
     let input_text = serialize::make_input_file(&test_input).unwrap();

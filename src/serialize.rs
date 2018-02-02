@@ -21,9 +21,9 @@ pub fn make_input_file(input: &Input) -> Result<String, Error> {
     let projections = make_projections(&input);
     let cell = make_unit_cell(&input);
     let positions = make_positions(&input);
-    let kpoints = make_kpoints(&input);
+    let k_points = make_kpoints(&input);
 
-    input_sections.extend(vec![projections, cell, positions, kpoints]);
+    input_sections.extend(vec![projections, cell, positions, k_points]);
 
     let input_text = input_sections.join("\n");
 
@@ -136,7 +136,7 @@ fn make_positions(input: &Input) -> String {
 }
 
 fn make_kpoints(input: &Input) -> String {
-    let nk = input.kpoints;
+    let nk = input.k_points;
 
     let mut lines = vec![
         format!("mp_grid = {} {} {}", nk[0], nk[1], nk[2]),

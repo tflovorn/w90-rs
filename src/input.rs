@@ -14,7 +14,7 @@ pub struct Input {
     pub unit_cell_cart: Cell,
     pub positions: Positions,
 
-    pub kpoints: [u64; 3],
+    pub k_points: [u64; 3],
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
